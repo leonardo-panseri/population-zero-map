@@ -8,7 +8,7 @@ const map = L.map('map', {
     maxBounds: bounds
 }).fitBounds(bounds);
 
-L.tileLayer('images/{z}/{x}/{y}.jpg', {
+L.tileLayer('images/map/{z}/{x}/{y}.jpg', {
     minZoom: 2,
     maxZoom: 5,
     noWrap: true,

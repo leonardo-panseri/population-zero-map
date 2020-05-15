@@ -1,4 +1,5 @@
 .idea/
 images/raw_tiles/
+images/map_old/
 lib/closure-compiler
 *.exe

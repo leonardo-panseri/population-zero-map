@@ -1,3 +1,24 @@
+const markers = {
+    "icon_base": "images/markers/",
+    "materials": {
+        "Salt": {
+            "icon": "salt.png",
+            "size": [30,40],
+            "coords": [[3000,3000],[3000,4000]]
+        },
+        "Hull Fragment": {
+            "icon": "hull_fragment.png",
+            "size": [30,40],
+            "coords": [[2000,3000]]
+        },
+        "Bractus Resin": {
+            "icon": "bractus_resin.png",
+            "size": [30,40],
+            "coords": [[4000,3000],[4000,3500],[4000,4000]]
+        }
+    }
+};
+
 /* A coordinate reference system that maps 1 pixel to 1 map unit
    The tiles are 256x256px, so Leaflet CRS.Simple uses by default latitude and longitude 0 to 256
    The tiles cover an 8192x8192px area, so the scale factor is 1/32
@@ -33,9 +54,26 @@ if(window.location.search.search("debug") !== -1) {
         });
 }
 
-//Test marker
-L.marker([2000,2000], {icon: L.icon({iconUrl: 'images/markers/salt.png',
-        iconSize: [70, 69]})}).addTo(map);
+// Load markers
+const overlay_materials = {};
+for(let key in markers['materials']) {
+    let material = markers['materials'][key];
+    let layerGroup = L.layerGroup();
+    for(let coords in material['coords']) {
+        coords = material['coords'][coords];
+        layerGroup.addLayer(
+            L.marker(coords, {icon: L.icon({
+                iconUrl: markers['icon_base'] + material['icon'],
+                iconSize: material['size']
+            })}));
+    }
+
+    layerGroup.addTo(map);
+    overlay_materials[key] = layerGroup;
+}
+
+// Add control for layers
+L.control.layers(null, overlay_materials).addTo(map);
 
 // On click open a popup displaying the quadrant name
 map.on('click', e => {

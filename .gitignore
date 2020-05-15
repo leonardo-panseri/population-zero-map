@@ -1,3 +1,4 @@
 .idea/
 images/raw_tiles/
+lib/closure-compiler
 *.exe

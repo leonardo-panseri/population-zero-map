@@ -19,9 +19,23 @@ L.tileLayer('images/map/{z}/{x}/{y}.jpg', {
     maxZoom: 5,
     noWrap: true,
     bounds: bounds,
-    useCache: true,
-    crossOrigin: true
+    // useCache: true,
+    // crossOrigin: true
 }).addTo(map);
+
+// If a GET parameter named debug is found add a marker to get precise coordinates
+if(window.location.search.search("debug") !== -1) {
+    L.marker([3000,3000], {draggable: true}).bindPopup("").addTo(map)
+        .on('moveend', e => {
+            let marker = e.target;
+            marker.getPopup().setContent(marker.getLatLng().toString());
+            marker.openPopup();
+        });
+}
+
+//Test marker
+L.marker([2000,2000], {icon: L.icon({iconUrl: 'images/markers/salt.png',
+        iconSize: [70, 69]})}).addTo(map);
 
 // On click open a popup displaying the quadrant name
 map.on('click', e => {

@@ -25,10 +25,12 @@ L.tileLayer('images/map/{z}/{x}/{y}.jpg', {
 
 // On click open a popup displaying the quadrant name
 map.on('click', e => {
-    L.popup()
-        .setLatLng(e.latlng)
-        .setContent('<p>Quadrant: ' + getQuadrant(e.latlng) + '</p>')
-        .openOn(map);
+    if(isInBounds(e.latlng)) {
+        L.popup()
+            .setLatLng(e.latlng)
+            .setContent('<p>Quadrant: ' + getQuadrant(e.latlng) + '</p>')
+            .openOn(map);
+    }
 });
 
 // Transform map coordinates in quadrant name
@@ -41,4 +43,9 @@ function getQuadrant(latlng) {
     y = Math.abs(y-19) + 65;
 
     return String.fromCharCode(y) + " " + x;
+}
+
+function isInBounds(latlng) {
+    return latlng.lat > bounds[0][0] && latlng.lng > bounds[0][1] &&
+        latlng.lat < bounds[1][0] && latlng.lng < bounds[1][1];
 }

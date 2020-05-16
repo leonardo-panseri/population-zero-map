@@ -1,21 +1,65 @@
 const markers = {
     icon_base: "images/markers/",
+    _shadow: {
+        icon: "_shadow.png",
+        size: [27,17]
+    },
     materials: {
-        "Salt": {
-            icon: "salt.png",
+        "Blue Essence": {
+            icon: "blue_essence.png",
             size: [30,40],
-            coords: [[3000,3000],[3000,4000]]
+            coords: [[1000,3000],[1000,4000]]
         },
-        "Hull Fragment": {
-            icon: "hull_fragment.png",
+        "Bractus Pieces": {
+            icon: "bractus_pieces.png",
             size: [30,40],
-            coords: [[2000,3000]]
+            coords: [[1500,3000],[1500,4000]]
         },
         "Bractus Resin": {
             icon: "bractus_resin.png",
             size: [30,40],
-            coords: [[4000,3000],[4000,3500],[4000,4000]]
-        }
+            coords: [[2000,3000],[2000,4000]]
+        },
+        "Cryopod Battery": {
+            icon: "cryopod_battery.png",
+            size: [30,40],
+            coords: [[2500,3000],[2500,4000]]
+        },
+        "Hull Fragment": {
+            icon: "hull_fragment.png",
+            size: [30,40],
+            coords: [[3000,3000],[3000,4000]]
+        },
+        "Limestone": {
+            icon: "limestone.png",
+            size: [30,40],
+            coords: [[3500,3000],[3500,4000]]
+        },
+        "Peat": {
+            icon: "peat.png",
+            size: [30,40],
+            coords: [[4000,3000],[4000,4000]]
+        },
+        "Salt": {
+            icon: "salt.png",
+            size: [30,40],
+            coords: [[4500,3000],[4500,4000]]
+        },
+        "Spiral Stem": {
+            icon: "spiral_stem.png",
+            size: [30,40],
+            coords: [[5000,3000],[5000,4000]]
+        },
+        "Thorium": {
+            icon: "thorium.png",
+            size: [30,40],
+            coords: [[5500,3000],[5500,4000]]
+        },
+        "Void Sample": {
+            icon: "void_sample.png",
+            size: [30,40],
+            coords: [[6000,3000],[6000,4000]]
+        },
     }
 };
 
@@ -54,7 +98,7 @@ if(window.location.search.search("debug") !== -1) {
         });
 }
 
-// Load markers
+// Load markers and marker controls
 const overlays = [];
 
 const materialLayers = {};
@@ -67,7 +111,9 @@ for(let key in markers['materials']) {
             L.marker(coords, {
                 icon: L.icon({
                     iconUrl: markers['icon_base'] + material['icon'],
-                    iconSize: material['size']
+                    iconSize: material['size'],
+                    shadowUrl: markers['icon_base'] + markers['_shadow']['icon'],
+                    shadowSize: markers['_shadow']['size']
                 }),
                 alt: key
             }));

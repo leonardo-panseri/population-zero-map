@@ -1,23 +1,33 @@
+/**
+ * Import fonts
+ */
 @font-face {
-    font-family: BebasNeueRegular;
-    src: url(fonts/BebasNeue-webfont.woff);
+    font-family: Supermolot;
+    src: url(fonts/Supermolot.otf);
 }
 
-@font-face {
-    font-family: Alegreya-Regular;
-    src: url(fonts/Alegreya-Regular.ttf);
+/*
+ * Custom scrollbar
+ */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-@font-face {
-    font-family: Ubuntu-Medium;
-    src: url(fonts/Ubuntu-Medium.ttf);
+::-webkit-scrollbar-track {
+    background: #353439;
 }
 
-@font-face {
-    font-family: Ubuntu-Regular;
-    src: url(fonts/Ubuntu-Regular.ttf);
+::-webkit-scrollbar-thumb {
+    background: #0a0b1d;
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/*
+ * Custom map styling
+ */
 html, body {
     margin: 0;
     height: 100%;
@@ -29,10 +39,13 @@ html, body {
     background: #000000;
 }
 
+/**
+ * StyledLayerControl css
+ */
 .leaflet-control-layers-expanded {
     border-radius: 5px 0;
-    background-color: #353439;
-    color: #A9A8AD;
+    background-color: #101234;
+    color: white;
 }
 
 .group-toggle-container a {
@@ -43,9 +56,6 @@ html, body {
     box-shadow: 1px 1px #150B33;
 }
 
-/**
- * StyledLayerControl css
- */
 .ac-container{
     width: auto;
     text-align: left;
@@ -54,33 +64,20 @@ html, body {
 }
 
 div[id^="leaflet-control-accordion-layers"] > label {
-    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    font-family: Supermolot, Helvetica, Arial, sans-serif;
     padding: 5px 20px;
     position: relative;
     z-index: 20;
     display: block;
     height: 30px;
     cursor: pointer;
-    color: #777;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
     line-height: 33px;
     font-size: 19px;
-    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: #0A0B1D;
     border-radius: 5px 0;
-
-    /*
-    background: #ffffff;
-    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
-    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
-    */
-
     box-shadow:
-            0 0 0 1px rgba(155,155,155,0.3),
-            1px 0 0 0 rgba(255,255,255,0.9) inset,
+            0 0 0 1px rgba(13, 18, 35, 0.3),
             0 2px 2px rgba(0,0,0,0.1);
     box-sizing: content-box;
     width: auto;
@@ -89,11 +86,10 @@ div[id^="leaflet-control-accordion-layers"] > label {
 
 .ac-container input.menu:checked + label,
 .ac-container input.menu:checked + label:hover{
-    background: #c6e1ec;
-    color: #3d7489;
+    background: #0A0B1D;
     text-shadow: 0 1px 1px rgba(255,255,255, 0.6);
     box-shadow:
-            0 0 0 1px rgba(155,155,155,0.3),
+            0 0 0 1px rgba(13, 18, 35, 0.3),
             0 2px 2px rgba(0,0,0,0.1);
 }
 .ac-container div[id^="leaflet-control-accordion-layers"] > label:hover:after,
@@ -137,8 +133,8 @@ div[id^="leaflet-control-accordion-layers"] > label {
 
 .ac-container input.menu:checked ~ article.ac-large{
     height: auto;
-    max-height : 100px;
-    padding: 8px 0;
+    max-height : 200px;
+    margin: 8px 0;
     overflow-y: auto;
     line-height: 18px;
 }
@@ -162,13 +158,22 @@ div[id^="leaflet-control-accordion-layers"] > label {
 }
 
 .menu-item-radio{
-    font-family: 'Ubuntu-Regular', Arial, sans-serif;
-    font-size: 13px;
+    font-family: Supermolot, Arial, sans-serif;
+    font-size: 16px;
 }
 
-.menu-item-checkbox{
-    font-family: 'Ubuntu-Regular', Arial, sans-serif;
-    font-size: 13px;
+.menu-item-checkbox {
+    font-family: Supermolot, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.ac-large div:not(:last-child) {
+    padding-bottom: 5px;
+}
+
+.menu-item-checkbox label {
+    float: right;
+    padding: 0 5px;
 }
 
 .leaflet-control-layers-expanded {

@@ -1,5 +1,6 @@
 .idea/
 images/raw_tiles/
 images/map_old/
-lib/closure-compiler
+lib/closure-compiler/
+lib/Pngyu/
 *.exe

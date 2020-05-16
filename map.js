@@ -94,9 +94,10 @@ const control = L.Control.styledLayerControl(null, overlays, {
 }).addTo(map);
 
 // On click open a popup displaying the quadrant name
+const quadrantPopup = L.popup();
 map.on('click', e => {
     if(isInBounds(e.latlng)) {
-        L.popup()
+        quadrantPopup
             .setLatLng(e.latlng)
             .setContent('<p>Quadrant: ' + getQuadrant(e.latlng) + '</p>')
             .openOn(map);

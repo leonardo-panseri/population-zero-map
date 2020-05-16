@@ -1,20 +1,20 @@
 const markers = {
-    "icon_base": "images/markers/",
-    "materials": {
+    icon_base: "images/markers/",
+    materials: {
         "Salt": {
-            "icon": "salt.png",
-            "size": [30,40],
-            "coords": [[3000,3000],[3000,4000]]
+            icon: "salt.png",
+            size: [30,40],
+            coords: [[3000,3000],[3000,4000]]
         },
         "Hull Fragment": {
-            "icon": "hull_fragment.png",
-            "size": [30,40],
-            "coords": [[2000,3000]]
+            icon: "hull_fragment.png",
+            size: [30,40],
+            coords: [[2000,3000]]
         },
         "Bractus Resin": {
-            "icon": "bractus_resin.png",
-            "size": [30,40],
-            "coords": [[4000,3000],[4000,3500],[4000,4000]]
+            icon: "bractus_resin.png",
+            size: [30,40],
+            coords: [[4000,3000],[4000,3500],[4000,4000]]
         }
     }
 };
@@ -55,25 +55,43 @@ if(window.location.search.search("debug") !== -1) {
 }
 
 // Load markers
-const overlay_materials = {};
+const overlays = [];
+
+const materialLayers = {};
 for(let key in markers['materials']) {
     let material = markers['materials'][key];
     let layerGroup = L.layerGroup();
     for(let coords in material['coords']) {
         coords = material['coords'][coords];
         layerGroup.addLayer(
-            L.marker(coords, {icon: L.icon({
-                iconUrl: markers['icon_base'] + material['icon'],
-                iconSize: material['size']
-            })}));
+            L.marker(coords, {
+                icon: L.icon({
+                    iconUrl: markers['icon_base'] + material['icon'],
+                    iconSize: material['size']
+                }),
+                alt: key
+            }));
     }
 
-    layerGroup.addTo(map);
-    overlay_materials[key] = layerGroup;
+    materialLayers[key] = layerGroup;
 }
 
+overlays.push({
+    groupName: 'Materials',
+    expanded: true,
+    layers: materialLayers
+});
+
 // Add control for layers
-L.control.layers(null, overlay_materials).addTo(map);
+const control = L.Control.styledLayerControl(null, overlays, {
+    collapsed: false,
+    group_togglers: {
+        show: true,
+        labelAll: 'All',
+        labelNone: 'None'
+    },
+    container_width: "200px"
+}).addTo(map);
 
 // On click open a popup displaying the quadrant name
 map.on('click', e => {

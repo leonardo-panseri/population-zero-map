@@ -1,7 +1,7 @@
 const markers = {
     icon_base: "images/markers/",
-    _shadow: {
-        icon: "_shadow.png",
+    shadow: {
+        icon: "shadow.png",
         size: [27,17]
     },
     materials: {
@@ -112,8 +112,8 @@ for(let key in markers['materials']) {
                 icon: L.icon({
                     iconUrl: markers['icon_base'] + material['icon'],
                     iconSize: material['size'],
-                    shadowUrl: markers['icon_base'] + markers['_shadow']['icon'],
-                    shadowSize: markers['_shadow']['size']
+                    shadowUrl: markers['icon_base'] + markers['shadow']['icon'],
+                    shadowSize: markers['shadow']['size']
                 }),
                 alt: key
             }));

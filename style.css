@@ -39,6 +39,15 @@ html, body {
     background: #000000;
 }
 
+.leaflet-control-zoom a {
+    background-color: #101234;
+    color: white;
+}
+
+.leaflet-control-zoom a.leaflet-disabled {
+    background-color: #080810;
+}
+
 /**
  * StyledLayerControl css
  */

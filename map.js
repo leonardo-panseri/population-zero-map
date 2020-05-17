@@ -83,12 +83,13 @@ L.Control.InfoControl = L.Control.extend({
         let div = L.DomUtil.create('div');
         L.DomUtil.addClass(div, 'leaflet-control-info hidden');
 
-        div.innerHTML = "<h2><img id='leaflet-control-info-icon' src='images/info.png' alt='Info'><span>Gathered by:</span></h2>" +
+        div.innerHTML = "<img id='leaflet-control-info-icon' src='images/info.png' alt='Info'>" +
+            "<div id='panel'><h2>Gathered by:</h2>" +
             "<hr><ul>" +
                 "<li><img src='images/gather_pickaxe.png' alt='Pickaxe'>Pickaxe</li>" +
                 "<li><img src='images/gather_knife.png' alt='Pickaxe'>Knife</li>" +
                 "<li><img src='images/gather_hand.png' alt='Pickaxe'>Hand</li>" +
-            "</ul>";
+            "</ul></div>";
 
         return div;
     },

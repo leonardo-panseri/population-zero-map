@@ -65,28 +65,33 @@ html, body {
     background: #101234;
     border-radius: 10px 0;
     color: white;
-    width: 200px;
     box-shadow: 2px 3px #0a0b1d;
 }
 
-.leaflet-control-info.hidden {
-    width: 40px;
+.leaflet-control-info #panel {
+    width: 200px;
+    height: 216px;
+    transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.leaflet-control-info.hidden #panel {
+    width: 0;
+    height: 0;
+    color: #101234;
+    overflow: hidden;
 }
 
 #leaflet-control-info-icon {
     height: 40px;
     cursor: pointer;
-    margin-left: -10px;
+    margin-left: 3px;
+    margin-top: 8px;
+    position: absolute;
 }
 
 .leaflet-control-info.hidden #leaflet-control-info-icon {
-    margin-left: 0;
-}
-
-.leaflet-control-info.hidden h2 span,
-.leaflet-control-info.hidden ul,
-.leaflet-control-info.hidden hr {
-    display: none;
+    margin: 0;
+    position: initial;
 }
 
 .leaflet-control-info.hidden h2 {
@@ -97,10 +102,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.leaflet-control-info h2 span {
-    padding-left: 5px;
+    padding-left: 10px;
 }
 
 .leaflet-control-info hr {
@@ -109,16 +111,13 @@ html, body {
 }
 
 .leaflet-control-info ul {
-    padding-left: 50px;
+    padding-left: 40px;
 }
 
 .leaflet-control-info li {
     display: flex;
     align-items: center;
     font-size: 16px;
-}
-
-.leaflet-control-info li:not(:last-child) {
     margin-bottom: 5px;
 }
 
@@ -172,6 +171,7 @@ div[id^="leaflet-control-accordion-layers"] > label {
     box-sizing: content-box;
     width: auto;
     margin: 0;
+    transition: border-bottom-width 0.3s ease-in-out;
 }
 
 .ac-container input.menu:checked + label,
@@ -197,29 +197,19 @@ div[id^="leaflet-control-accordion-layers"] > label {
 .ac-container input.menu{
     display: none;
 }
-.ac-container article{
-    margin-top: -1px;
+.ac-container article {
     overflow: hidden;
-    height: 0;
+    max-height: 0;
     padding: 0;
-    line-height: 0;
     position: relative;
     z-index: 10;
-    -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-}
-
-.ac-container input.menu:checked ~ article{
-    -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-    -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-    -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-    transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+    -webkit-transition: max-height 0.3s ease-in-out;
+    -moz-transition: max-height 0.3s ease-in-out;
+    -o-transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.3s ease-in-out;
 }
 
 .ac-container input.menu:checked ~ article.ac-large{
-    height: auto;
     max-height : 200px;
     margin: 8px 0;
     overflow-y: scroll;

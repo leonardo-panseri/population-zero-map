@@ -1,3 +1,6 @@
+/*
+ * Object representing all markers present on the map
+ */
 const markers = {
     icon_base: "images/markers/",
     shadow: {
@@ -72,6 +75,29 @@ const p0_crs = L.extend({}, L.CRS.Simple, {
     transformation: new L.Transformation(1/32, 0, 1/32, 0),
 });
 
+/*
+ * Custom control overlay for displaying an info div
+ */
+L.Control.InfoControl = L.Control.extend({
+    onAdd: function(map) {
+        let div = L.DomUtil.create('div');
+        L.DomUtil.addClass(div, 'leaflet-control-info hidden');
+
+        div.innerHTML = "<h2><img id='leaflet-control-info-icon' src='images/info.png' alt='Info'><span>Gathered by:</span></h2>" +
+            "<ul>" +
+                "<li><img src='images/gather_pickaxe.png' alt='Pickaxe'>Pickaxe</li>" +
+                "<li><img src='images/gather_knife.png' alt='Pickaxe'>Knife</li>" +
+                "<li><img src='images/gather_hand.png' alt='Pickaxe'>Hand</li>" +
+            "</ul>";
+
+        return div;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+
 // Bounds of the map, cutting out unnecessary tiles
 const bounds = [[362,0], [7832,8192]];
 const map = L.map('map', {
@@ -88,15 +114,12 @@ L.tileLayer('images/map/{z}/{x}/{y}.jpg', {
     // crossOrigin: true
 }).addTo(map);
 
-// If a GET parameter named debug is found add a marker to get precise coordinates
-if(window.location.search.search("debug") !== -1) {
-    L.marker([3000,3000], {draggable: true}).bindPopup("").addTo(map)
-        .on('moveend', e => {
-            let marker = e.target;
-            marker.getPopup().setContent(marker.getLatLng().toString());
-            marker.openPopup();
-        });
-}
+// Add info overlay
+const infoControl = new L.Control.InfoControl({position: 'bottomleft'}).addTo(map);
+const icon = document.getElementById('leaflet-control-info-icon');
+icon.addEventListener('click', () => {
+    infoControl.getContainer().classList.toggle('hidden');
+});
 
 // Load markers and marker controls
 const overlays = [];
@@ -130,7 +153,7 @@ overlays.push({
 });
 
 // Add control for layers
-const control = L.Control.styledLayerControl(null, overlays, {
+L.Control.styledLayerControl(null, overlays, {
     collapsed: false,
     group_togglers: {
         show: true,
@@ -166,4 +189,14 @@ function getQuadrant(latlng) {
 function isInBounds(latlng) {
     return latlng.lat > bounds[0][0] && latlng.lng > bounds[0][1] &&
         latlng.lat < bounds[1][0] && latlng.lng < bounds[1][1];
+}
+
+// If a GET parameter named debug is found add a marker to get precise coordinates
+if(window.location.search.search("debug") !== -1) {
+    L.marker([3000,3000], {draggable: true}).bindPopup("").addTo(map)
+        .on('moveend', e => {
+            let marker = e.target;
+            marker.getPopup().setContent(marker.getLatLng().toString());
+            marker.openPopup();
+        });
 }

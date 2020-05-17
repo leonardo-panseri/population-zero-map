@@ -39,22 +39,87 @@ html, body {
     background: #000000;
 }
 
+/*
+ * Zoom control
+ */
 .leaflet-control-zoom a {
     background-color: #101234;
     color: white;
+    box-shadow: 2px 3px #0a0b1d;
 }
 
 .leaflet-control-zoom a.leaflet-disabled {
     background-color: #080810;
 }
 
+/*
+ * Info control
+ */
+.leaflet-control-info {
+    font-family: Supermolot, Helvetica, Arial, sans-serif;
+    background: #101234;
+    border-radius: 10px 0;
+    color: white;
+    width: 200px;
+    box-shadow: 2px 3px #0a0b1d;
+}
+
+.leaflet-control-info.hidden {
+    width: 40px;
+}
+
+#leaflet-control-info-icon {
+    height: 40px;
+    cursor: pointer;
+}
+
+.leaflet-control-info.hidden h2 span,
+.leaflet-control-info.hidden ul {
+    display: none;
+}
+
+.leaflet-control-info.hidden h2 {
+    margin: 0;
+}
+
+.leaflet-control-info h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaflet-control-info h2 span {
+    padding-left: 5px;
+}
+
+.leaflet-control-info ul {
+    padding-left: 50px;
+}
+
+.leaflet-control-info li {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.leaflet-control-info li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.leaflet-control-info li img {
+    height: 50px;
+    padding-right: 10px;
+}
+
 /**
  * StyledLayerControl css
  */
 .leaflet-control-layers-expanded {
-    border-radius: 5px 0;
+    border-radius: 10px 0;
+    padding: 5px;
     background-color: #101234;
     color: white;
+    box-shadow: 2px 3px #0a0b1d;
 }
 
 .group-toggle-container a {
@@ -84,7 +149,7 @@ div[id^="leaflet-control-accordion-layers"] > label {
     line-height: 33px;
     font-size: 19px;
     background: #0A0B1D;
-    border-radius: 5px 0;
+    border-radius: 10px 0;
     box-shadow:
             0 0 0 1px rgba(13, 18, 35, 0.3),
             0 2px 2px rgba(0,0,0,0.1);
@@ -128,7 +193,6 @@ div[id^="leaflet-control-accordion-layers"] > label {
     -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
-    -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
     transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
 }
 
@@ -136,7 +200,6 @@ div[id^="leaflet-control-accordion-layers"] > label {
     -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
-    -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
     transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
 }
 
@@ -184,13 +247,4 @@ div[id^="leaflet-control-accordion-layers"] > label {
 .menu-item-checkbox label {
     float: right;
     padding: 0 5px;
-}
-
-.leaflet-control-layers-expanded {
-    padding: 5px;
-}
-
-.leaflet-control-layers:hover {
-    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
-    border-radius: 5px;
 }

@@ -84,7 +84,7 @@ L.Control.InfoControl = L.Control.extend({
         L.DomUtil.addClass(div, 'leaflet-control-info hidden');
 
         div.innerHTML = "<h2><img id='leaflet-control-info-icon' src='images/info.png' alt='Info'><span>Gathered by:</span></h2>" +
-            "<ul>" +
+            "<hr><ul>" +
                 "<li><img src='images/gather_pickaxe.png' alt='Pickaxe'>Pickaxe</li>" +
                 "<li><img src='images/gather_knife.png' alt='Pickaxe'>Knife</li>" +
                 "<li><img src='images/gather_hand.png' alt='Pickaxe'>Hand</li>" +
@@ -138,6 +138,7 @@ for(let key in markers['materials']) {
                     iconAnchor: [15,40],
                     shadowUrl: markers['icon_base'] + markers['shadow']['icon'],
                     shadowSize: markers['shadow']['size'],
+                    shadowAnchor: [1,16]
                 }),
                 alt: key
             }));

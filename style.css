@@ -70,7 +70,7 @@ html, body {
 
 .leaflet-control-info #panel {
     width: 200px;
-    height: 216px;
+    height: 225px;
     transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
